@@ -3,7 +3,7 @@ const { pages, apis } = require('./routes')
 const expressHandlebars = require('express-handlebars')
 const session = require('express-session')
 const flash = require('connect-flash')
-// const { session } = require('passport')
+const passport = require('./config/passport')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -15,8 +15,10 @@ const port = 3000
 app.engine('hbs', expressHandlebars({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(express.json())
 app.use(flash())
 app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success_messages')
