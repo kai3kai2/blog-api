@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const admin = require('./modules/admin')
-const blogController = require('../../controllers/apis/block-controller')
+const blogController = require('../../controllers/apis/blog-controller')
 const userController = require('../../controllers/apis/user-controller')
 const { apiErrorHandler } = require('../../middleware/error-handler')
 
