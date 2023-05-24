@@ -5,6 +5,7 @@ const passport = require('../../config/passport')
 const admin = require('./modules/admin')
 const blogController = require('../../controllers/pages/blog-controller')
 const userController = require('../../controllers/pages/user-controller')
+const { authenticated } = require('../../middleware/auth')
 const { generalErrorHandler } = require('../../middleware/error-handler')
 
 router.use('/admin', admin)
@@ -17,8 +18,9 @@ router.post('/signin', passport.authenticate('local', { failureRedirect: '/signi
 
 router.get('/logout', userController.logout)
 
-router.get('/blog', blogController.getBlog)
-router.get('/', (req, res) => res.render('blog'))
+router.get('/blog', authenticated, blogController.getBlog)
+router.use('/', (req, res) => res.redirect('/blog'))
+
 router.use('/', generalErrorHandler)
 
 module.exports = router
