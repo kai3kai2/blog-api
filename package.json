@@ -35,5 +35,8 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1"
+  },
+  "engines": {
+    "node": ">=14.21.3 <15"
   }
 }
