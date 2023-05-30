@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.engine('hbs', expressHandlebars({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers })) // 將 handlebars-helpers 註冊進express-handlebar
 app.set('view engine', 'hbs')

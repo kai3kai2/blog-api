@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      // define association here
+      Article.belongsTo(models.User)
     }
   };
   Article.init({
     title: DataTypes.STRING,
-    content: DataTypes.TEXT
+    content: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Article',
