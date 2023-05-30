@@ -16,6 +16,23 @@ const userController = {
     } catch (err) {
       next(err)
     }
+  },
+  signIn: async (req, res, next) => {
+    try {
+      await userServices.signIn(req, (err, data) => {
+        if (err) {
+          next(err)
+        } else {
+          res.status(200).json({
+            status: 'success',
+            message: '登入成功!',
+            data
+          })
+        }
+      })
+    } catch (err) {
+      next(err)
+    }
   }
 }
 

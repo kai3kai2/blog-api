@@ -1,5 +1,8 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
+const passportJWT = require('passport-jwt')
+const JWTStrategy = passportJWT.Strategy
+const ExtractJwt = passportJWT.ExtractJwt
 const bcrypt = require('bcryptjs')
 const { User } = require('../models')
 
@@ -30,5 +33,15 @@ passport.deserializeUser((id, cb) => {
     return cb(null, user)
   })
 })
+
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET
+}
+passport.use(new JWTStrategy(jwtOptions, (jwtPayload, cb) => {
+  User.findByPk(jwtPayload.id)
+    .then(user => cb(null, user))
+    .catch(err => cb(err))
+}))
 
 module.exports = passport
