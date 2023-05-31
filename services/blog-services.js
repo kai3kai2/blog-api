@@ -1,7 +1,7 @@
 const { Article } = require('../models')
 
 const blogServices = {
-  postArticles: async (req, cb) => {
+  postArticle: async (req, cb) => {
     try {
       const { title, content } = req.body
       const newArticle = await Article.create({

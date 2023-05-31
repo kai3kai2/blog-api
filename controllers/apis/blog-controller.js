@@ -1,7 +1,7 @@
 const blogServices = require('../../services/blog-services')
 
 const blogController = {
-  postArticles: async (req, res, next) => {
+  postArticle: async (req, res, next) => {
     blogServices.postArticles(req, (err, data) => {
       if (err) {
         next(err)

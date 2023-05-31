@@ -10,7 +10,7 @@ const { apiErrorHandler, validateArticle } = require('../../middleware/error-han
 
 router.use('/admin', authenticated, authenticatedAdmin, admin)
 router.post('/signin', passport.authenticate('local', { session: false }), userController.signIn)
-router.post('/article', authenticated, validateArticle, blogController.postArticles)
+router.post('/article', authenticated, validateArticle, blogController.postArticle)
 router.get('/signup', userController.signUp)
 router.use('/', apiErrorHandler)
 
