@@ -1,6 +1,18 @@
+const blogServices = require('../../services/blog-services')
+
 const blogController = {
-  getBlog: (req, res) => {
-    return res.render('blog')
+  postArticles: async (req, res, next) => {
+    blogServices.postArticles(req, (err, data) => {
+      if (err) {
+        next(err)
+      } else {
+        res.status(201).json({
+          status: 'success',
+          message: '創建文章成功!',
+          data
+        })
+      }
+    })
   }
 }
 

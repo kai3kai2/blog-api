@@ -16,5 +16,19 @@ module.exports = {
       message
     })
     next(err)
+  },
+  validateArticle (req, res, next) {
+    const { title, content } = req.body
+    if (!title || title?.trim().length === 0) {
+      const error = new Error('文章需要標題!')
+      error.status = 400
+      throw error
+    }
+    if (!content || content?.trim().length === 0) {
+      const error = new Error('文章沒有內容!')
+      error.status = 400
+      throw error
+    }
+    next()
   }
 }
