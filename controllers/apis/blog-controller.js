@@ -20,17 +20,26 @@ const blogController = {
         next(err)
       } else {
         res.status(200).json({
-          status: 'sucess',
+          status: 'success',
+          message: '取得資料成功!',
+          data
+        })
+      }
+    })
+  },
+  getArticle: async (req, res, next) => {
+    blogServices.getArticle(req, (err, data) => {
+      if (err) {
+        next(err)
+      } else {
+        res.status(200).json({
+          status: 'success',
           message: '取得資料成功!',
           data
         })
       }
     })
   }
-  // ,
-  // getArticle: async (req, res, next) => {
-  //   blogServices
-  // }
 }
 
 module.exports = blogController

@@ -17,7 +17,18 @@ const blogServices = {
   },
   getArticles: async (req, cb) => {
     try {
-      const articleData = await Article.findAll({ raw: true })
+      const articleDatas = await Article.findAll({ raw: true, order: [['createdAt', 'DESC']] })
+      cb(null, articleDatas)
+    } catch (err) {
+      cb(err)
+    }
+  },
+  getArticle: async (req, cb) => {
+    try {
+      const articleData = await Article.findByPk(req.params.id, {
+        raw: true
+      })
+      if (!articleData) throw new Error('此文章不存在!')
       cb(null, articleData)
     } catch (err) {
       cb(err)

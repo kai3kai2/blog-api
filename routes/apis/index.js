@@ -12,6 +12,7 @@ router.use('/admin', authenticated, authenticatedAdmin, admin)
 router.post('/signin', passport.authenticate('local', { session: false }), userController.signIn)
 router.get('/signup', userController.signUp)
 router.get('/articles', authenticated, blogController.getArticles)
+router.get('/article/:id', authenticated, blogController.getArticle)
 router.post('/article', authenticated, validateArticle, blogController.postArticle)
 router.use('/', apiErrorHandler)
 
