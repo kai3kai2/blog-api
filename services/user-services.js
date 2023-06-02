@@ -35,7 +35,7 @@ const userServices = {
     try {
       const userData = helpers.getUser(req).toJSON()
       const user = lodash.pick(userData, ['name', 'introduction', 'cover'])
-      const token = jwt.sign(userData, process.env.JWT_SECRET, { expiresIn: '1d' })
+      const token = jwt.sign(userData, process.env.JWT_SECRET, { expiresIn: '7d' })
       cb(null, { token, user })
     } catch (err) {
       cb(err)

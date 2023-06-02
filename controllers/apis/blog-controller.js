@@ -13,7 +13,24 @@ const blogController = {
         })
       }
     })
+  },
+  getArticles: async (req, res, next) => {
+    blogServices.getArticles(req, (err, data) => {
+      if (err) {
+        next(err)
+      } else {
+        res.status(200).json({
+          status: 'sucess',
+          message: '取得資料成功!',
+          data
+        })
+      }
+    })
   }
+  // ,
+  // getArticle: async (req, res, next) => {
+  //   blogServices
+  // }
 }
 
 module.exports = blogController

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       Article.belongsTo(models.User, { foreignKey: 'userId' })
     }
-  };
+  }
   Article.init({
     title: DataTypes.STRING,
     content: DataTypes.TEXT
